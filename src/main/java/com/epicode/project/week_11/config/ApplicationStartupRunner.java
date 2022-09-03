@@ -98,7 +98,7 @@ public class ApplicationStartupRunner implements CommandLineRunner {
         author.setSurname("Palladino");
         Author author1 = new Author();
         author1.setName("Nicola");
-        author1.setSurname("Redente");
+        author1.setSurname("Palmieri");
         authorRepository.save(author);
         authorRepository.save(author1);
         log.info("Author  saved: {}", author.getName() + author.getSurname());
