@@ -18,7 +18,7 @@ import io.swagger.v3.oas.annotations.servers.Server;
                 ),
                 license = @License(
                         name = "MIT Licence",
-                        url = "https://github.com/LupoX1/tournament/blob/daniele/LICENSE%22")),
+                        url = "https://github.com/JacopoColleluori/BE_Settimana_11/blob/main/LICENSE")),
                         servers = @Server(url = "http://localhost:8080")
                 )
                         public class OpenApiConfig{
