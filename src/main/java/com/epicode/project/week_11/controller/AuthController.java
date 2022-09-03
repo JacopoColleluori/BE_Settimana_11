@@ -13,6 +13,8 @@ import com.epicode.project.week_11.security.model.*;
 import com.epicode.project.week_11.service.UserDetailsImpl;
 import com.epicode.project.week_11.service.UserService;
 import com.epicode.project.week_11.util.JwtUtils;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -31,6 +33,7 @@ import io.swagger.v3.oas.annotations.Operation;
 
 @RestController
 @RequestMapping("/auth")
+@Tag(name="Authentication")
 public class AuthController {
 
     @Autowired
@@ -51,6 +54,7 @@ public class AuthController {
     RoleRepository roleRepository;
 
     @PostMapping("/login")
+    @Operation(summary="Logging in")
     public ResponseEntity<?> authenticateUser(@RequestBody LoginRequest loginRequest) {
 
         Authentication authentication = authenticationManager.authenticate(
@@ -70,7 +74,7 @@ public class AuthController {
     }
 
     @PostMapping("/signup")
-    @Operation(summary="Se non si specifica il ruolo di default è user,si possono avere più ruoli")
+    @Operation(summary="You can have more roles, default role is user")
     public ResponseEntity<?> registraUser(@RequestBody RequestRegisterUser registraUser) {
 
         if (userRepository.existsByEmail(registraUser.getEmail())) {

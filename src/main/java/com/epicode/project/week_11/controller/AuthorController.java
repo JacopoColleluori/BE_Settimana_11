@@ -4,10 +4,12 @@ import com.epicode.project.week_11.model.Author;
 import com.epicode.project.week_11.model.Book;
 import com.epicode.project.week_11.service.AuthorService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,6 +17,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/author")
 @Tag(name="Author")
+@SecurityRequirement(name="bearerAuth")
 public class AuthorController {
     @Autowired
     private AuthorService authorService;
@@ -33,14 +36,17 @@ public class AuthorController {
     }
     @PostMapping("create")
     @Operation(summary="create author ")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<Author> createAuthor(@RequestBody Author author) {
         return new ResponseEntity<Author>(authorService.create(author), HttpStatus.CREATED);
     }
     @PutMapping("{id}")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<Author> updateAuthor(@RequestBody Author author,@PathVariable Long id) {
         return ResponseEntity.ok(authorService.update(id, author));
     }
     @DeleteMapping("{id}")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<String> deleteAuthor(@PathVariable Long id) {
         authorService.delete(id);
         return new ResponseEntity<String>("successfully deleted",HttpStatus.ACCEPTED);

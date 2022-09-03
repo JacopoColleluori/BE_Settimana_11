@@ -39,57 +39,57 @@ public class ApplicationStartupRunner implements CommandLineRunner {
 
 
     @Override
-    public void run(String... args) throws Exception {
-        initAuthor();
-        initCategory();
-        initBook();
-
-
-        BCryptPasswordEncoder bCrypt = new BCryptPasswordEncoder();
-
-        Role role = new Role();
-        Role role2 = new Role();
-
-        role2.setRoleName(Roles.ROLE_USER);
-        role.setRoleName(Roles.ROLE_ADMIN);
-
-        User user = new User();
-        User user2 = new User();
-        Set<Role> rolesAdmin = new HashSet<>();
-        Set<Role> rolesUser = new HashSet<>();
-        rolesAdmin.add(role);
-        rolesUser.add(role2);
-
-        user2.setUserName("user");
-        user2.setPassword(bCrypt.encode("user"));
-        user2.setEmail("user@gmail.com");
-        user2.setRoles(rolesUser);
-        user2.setActive(true);
-
-        user.setUserName("admin");
-        user.setPassword(bCrypt.encode("admin"));
-        user.setEmail("admin@domain.com");
-        user.setRoles(rolesAdmin);
-        user.setActive(true);
-
-
-        roleRepository.save(role2);
-        roleRepository.save(role);
-
-        userRepository.save(user);
-        userRepository.save(user2);
-
-    }
-
-    private Category initCategory() {
-        Category category = new Category();
-        category.setName("Horror");
-        Category category1 = new Category();
-        category1.setName("Romance");
-        categoryRepository.save(category);
-        categoryRepository.save(category1);
-        log.info("Category saved: {}", category.getName());
-        return category;
+    public void run(String... args) throws Exception {          //Run only First time
+//        initAuthor();
+//        initCategory();
+//        initBook();
+//
+//
+//        BCryptPasswordEncoder bCrypt = new BCryptPasswordEncoder();
+//
+//        Role role = new Role();
+//        Role role2 = new Role();
+//
+//        role2.setRoleName(Roles.ROLE_USER);
+//        role.setRoleName(Roles.ROLE_ADMIN);
+//
+//        User user = new User();
+//        User user2 = new User();
+//        Set<Role> rolesAdmin = new HashSet<>();
+//        Set<Role> rolesUser = new HashSet<>();
+//        rolesAdmin.add(role);
+//        rolesUser.add(role2);
+//
+//        user2.setUserName("user");
+//        user2.setPassword(bCrypt.encode("user"));
+//        user2.setEmail("user@gmail.com");
+//        user2.setRoles(rolesUser);
+//        user2.setActive(true);
+//
+//        user.setUserName("admin");
+//        user.setPassword(bCrypt.encode("admin"));
+//        user.setEmail("admin@domain.com");
+//        user.setRoles(rolesAdmin);
+//        user.setActive(true);
+//
+//
+//        roleRepository.save(role2);
+//        roleRepository.save(role);
+//
+//        userRepository.save(user);
+//        userRepository.save(user2);
+//
+//    }
+//
+//    private Category initCategory() {
+//        Category category = new Category();
+//        category.setName("Horror");
+//        Category category1 = new Category();
+//        category1.setName("Romance");
+//        categoryRepository.save(category);
+//        categoryRepository.save(category1);
+//        log.info("Category saved: {}", category.getName());
+//        return category;
     }
 
     private Author initAuthor() {
